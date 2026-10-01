@@ -1,0 +1,8 @@
+services:
+  research:
+    build: .
+    command: ["python", "scripts/backtest.py", "--config", "config/research.yaml"]
+    volumes:
+      - ./data:/app/data
+    environment:
+      - PYTHONHASHSEED=42

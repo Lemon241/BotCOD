@@ -1,0 +1,53 @@
+market:
+  symbol: EURUSD
+  account_currency: USD
+  pip_size: 0.0001
+  execution_mode: BACKTEST
+timeframes:
+  execution: 1min
+  signal: 5min
+  context: 15min
+features:
+  m1_window: 30
+  m5_window: 24
+  m15_window: 16
+  atr_periods: [5, 14, 30]
+model:
+  type: logistic
+  min_probability: 0.65
+  random_seed: 42
+  calibration: sigmoid
+barriers:
+  mode: atr
+  take_profit_pips: 8.0
+  stop_loss_pips: 5.0
+  take_profit_atr: 0.8
+  stop_loss_atr: 0.5
+  max_holding_minutes: 15
+decision:
+  min_expected_value_pips: 0.3
+  min_ev_difference_pips: 0.15
+  counter_trend_factor: 0.9
+execution:
+  max_spread_pips: 1.5
+  max_entry_wait_minutes: 3
+risk:
+  initial_equity: 10000.0
+  risk_per_trade_pct: 0.25
+  max_open_positions: 1
+  max_daily_loss_pct: 1.5
+  max_drawdown_pct: 8.0
+  allow_martingale: false
+  allow_grid: false
+  allow_averaging_down: false
+costs:
+  spread_mode: historical
+  default_spread_pips: 0.8
+  slippage_pips: 0.1
+  commission_per_unit: 0.0
+  swap_per_unit_day: 0.0
+backtest:
+  ambiguous_policy: assume_loss
+  output_dir: data/output
+  train_fraction: 0.60
+  validation_fraction: 0.20
